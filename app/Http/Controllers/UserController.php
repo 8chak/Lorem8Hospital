@@ -6,14 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Doctor;
 use App\Models\Appointment;
+use App\Models\Blog;
 
 
 class UserController extends Controller
 {
     public function index() {
-
+        $latestNews = Blog::latest()->take(3)->get();
         $doctors = Doctor::all();
-        return view('home', compact('doctors'));
+        return view('home', compact('doctors', 'latestNews'));
 
     }
 
@@ -57,5 +58,14 @@ class UserController extends Controller
                 ->withInput()
                 ->with('error', 'Failed to create appointment. Please try again.');
         }
+    }
+
+    public function allNews(){
+        $blogs = Blog::paginate(10);
+        return view('news', compact('blogs'));
+    }
+    
+    public function showNews(Blog $blog){
+        return view('blog-details', compact('blog'));
     }
 }

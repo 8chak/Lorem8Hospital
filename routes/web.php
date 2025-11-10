@@ -3,19 +3,18 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/news', [UserController::class, 'allNews'])->name('allNews');
+
+Route::get('/blog-details/{blog}', [UserController::class, 'showNews'])->name('showNews');
+
 Route::get('/contact', function () {
     return view('contact');
-});
-Route::get('/blog-details/id', function () {
-    return view('blog-details');
 });
 Route::post('/appointment', [UserController::class, 'requestAppointment'])->name('appointmentRequest');
 
@@ -41,5 +40,6 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/main_panel', [AdminController::class, 'showPanel'])->name('show_panel');
 });
 
+Route::resource('blogs', BlogController::class)->middleware('admin', 'auth');
 
 require __DIR__.'/auth.php';

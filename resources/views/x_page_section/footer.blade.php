@@ -46,6 +46,6 @@
 
       <hr>
 
-      <p id="copyright">Copyright &copy; 2020 <a href="https://macodeid.com/" target="_blank">MACode ID</a>. All right reserved</p>
+      <p id="copyright">Theme Credit &copy; 2020 <a href="https://macodeid.com/" target="_blank">Dev8chak </a>Find Out More.</p>
     </div>
   </footer>

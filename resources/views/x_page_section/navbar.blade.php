@@ -27,7 +27,7 @@
               <a class="nav-link" href="{{ route('doctorsPage') }}">Doctors</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/news">News</a>
+              <a class="nav-link" href="{{ route('allNews') }}">News</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/contact">Contact</a>

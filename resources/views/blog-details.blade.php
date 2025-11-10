@@ -6,8 +6,8 @@
         <div class="col-lg-8">
           <nav aria-label="Breadcrumb">
             <ol class="breadcrumb bg-transparent py-0 mb-5">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-              <li class="breadcrumb-item"><a href="blog.html">Blog</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('allNews') }}">Blog</a></li>
               <li class="breadcrumb-item active" aria-current="page">List of Countries without Coronavirus case</li>
             </ol>
           </nav>
@@ -18,35 +18,33 @@
         <div class="col-lg-8">
           <article class="blog-details">
             <div class="post-thumb">
-              <img src="{{ asset('template') }}/assets/img/blog/blog_1.jpg" alt="">
+              <img src="{{ $blog->image_url }}" alt="{{ $blog->title }}">
             </div>
             <div class="post-meta">
               <div class="post-author">
-                <span class="text-grey">By</span> <a href="#">Admin</a>  
+                <span class="text-grey">By</span> <a href="#">{{ $blog->writer }}</a>  
               </div>
               <span class="divider">|</span>
               <div class="post-date">
-                <a href="#">22 Jan, 2018</a>
+                <a href="#">{{ $blog->created_at->format('M d, Y') }}</a>
               </div>
               <span class="divider">|</span>
               <div>
-                <a href="#">StreetStyle</a>, <a href="#">Fashion</a>, <a href="#">Couple</a>  
+                @foreach($blog->categories_array as $category)
+                  <a href="#">{{ $category }}</a>
+                @endforeach
               </div>
               <span class="divider">|</span>
               <div class="post-comment-count">
                 <a href="#">8 Comments</a>
               </div>
             </div>
-            <h2 class="post-title h1">List of Countries without Coronavirus case</h2>
-            <div class="post-content">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet est vel orci luctus sollicitudin. Duis eleifend vestibulum justo, varius semper lacus condimentum dictum. Donec pulvinar a magna ut malesuada. In posuere felis diam, vel sodales metus accumsan in. Duis viverra dui eu pharetra pellentesque. Donec a eros leo. Quisque sed ligula vitae lorem efficitur faucibus. Praesent sit amet imperdiet ante. Nulla id tellus auctor, dictum libero a, malesuada nisi. Nulla in porta nibh, id vestibulum ipsum. Praesent dapibus tempus erat quis aliquet. Donec ac purus id sapien condimentum feugiat.</p>
-
-              <p>Praesent vel mi bibendum, finibus leo ac, condimentum arcu. Pellentesque sem ex, tristique sit amet suscipit in, mattis imperdiet enim. Integer tempus justo nec velit fringilla, eget eleifend neque blandit. Sed tempor magna sed congue auctor. Mauris eu turpis eget tortor ultricies elementum. Phasellus vel placerat orci, a venenatis justo. Phasellus faucibus venenatis nisl vitae vestibulum. Praesent id nibh arcu. Vivamus sagittis accumsan felis, quis vulputate</p>
-            </div>
+            <h2 class="post-title h1">{{ $blog->title }}</h2>
+            <div class="post-content">{{ $blog->passage }}</div>
             <div class="post-tags">
-              <a href="#" class="tag-link">LifeStyle</a>
-              <a href="#" class="tag-link">Food</a>
-              <a href="#" class="tag-link">Coronavirus</a>
+              @foreach($blog->tags_array as $tag)
+                <a href="#" class="tag-link">{{ $tag }}</a>
+              @endforeach
             </div>
           </article> <!-- .blog-details -->
 
