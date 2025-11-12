@@ -53,7 +53,7 @@ return [
     */
 
     // 'url' => env('APP_URL', 'http://localhost'),
-    'url' => env('APP_URL', 'https://clinicare-zl04.onrender.com/'),
+    'url' => env('APP_URL', 'https://clinicare-zl04.onrender.com'),
 
     /*
     |--------------------------------------------------------------------------
