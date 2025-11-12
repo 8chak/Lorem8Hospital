@@ -22,9 +22,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        if (app()->environment('production')) {
-            URL::forceScheme('https');
-        }
          // Share data with ALL views that use app layout
         View::composer('admin.template', function ($view) {
             $view->with([
