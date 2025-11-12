@@ -25,6 +25,12 @@ RUN composer install --no-dev --optimize-autoloader
 # Set permissions for Laravel storage
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Make database folder and file
+RUN mkdir -p database && touch database/database.sqlite \
+    && chown -R www-data:www-data database \
+    && chmod -R 775 database
+
+
 # Expose port 80
 EXPOSE 80
 
