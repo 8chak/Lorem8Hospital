@@ -3,8 +3,9 @@ FROM php:8.3-apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git zip unzip libpq-dev libonig-dev libzip-dev && \
-    docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl bcmath
+    git zip unzip sqlite3 libsqlite3-dev libpq-dev libonig-dev libzip-dev && \
+    docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring zip exif pcntl bcmath
+
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite
@@ -28,4 +29,5 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 EXPOSE 80
 
 # Start Apache server
-CMD ["apache2-foreground"]
+CMD php artisan migrate --force && apache2-foreground
+
