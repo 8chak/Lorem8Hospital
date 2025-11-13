@@ -25,9 +25,14 @@ class AdminController extends Controller
         ]);
         
         // Handle image upload
+        // if ($request->hasFile('image')) {
+        //     $imagePath = $request->file('image')->store('doctors', 'public');
+        //     $validated['image'] = $imagePath;
+        // }
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('doctors', 'public');
-            $validated['image'] = $imagePath;
+            $filename = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path('images/doctors'), $filename);
+            $validated['image'] = $fukename;
         }
         
         // Create the doctor

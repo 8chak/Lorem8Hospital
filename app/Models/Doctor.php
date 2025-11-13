@@ -17,7 +17,7 @@ class Doctor extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? asset('storage/' . $this->image) : asset('images/default-doctor.jpg');
+        return $this->image ? asset('images/doctors/' . $this->image) : asset('images/default-doctor.jpg');
     }
     // Accessor for full name
     public function getFullNameAttribute()
