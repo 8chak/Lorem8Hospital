@@ -31,8 +31,8 @@ class AdminController extends Controller
         // }
         if ($request->hasFile('image')) {
             $filename = time() . '_' . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('images/doctors'), $filename);
-            $validated['image'] = $fukename;
+            $request->file('image')->move(public_path('images'), $filename);
+            $validated['image'] = $filename;
         }
         
         // Create the doctor
