@@ -41,9 +41,9 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 
 # Build frontend assets
 #latest commit
-# RUN npm run build
+# RUN npm ci && npm run build
 
 # Start Apache server
 #Storage link no commit::congig clear && cache clear
-CMD php artisan storage:link && php artisan migrate --force && apache2-foreground
+CMD php artisan storage:link && \ php artisan migrate --force && apache2-foreground
 
