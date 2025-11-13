@@ -25,8 +25,7 @@ RUN composer install --no-dev --optimize-autoloader
 # Set permissions for Laravel storage
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Build frontend assets
-RUN npm ci && npm run build
+
 
 # Make database folder and file
 RUN mkdir -p database && touch database/database.sqlite \
@@ -40,7 +39,12 @@ EXPOSE 80
 # Set Apache document root to Laravel's public folder
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
+# Build frontend assets
+#latest commit
+RUN npm ci && npm run build
+
 # Start Apache server
+#Storage link no commit::congig clear && cache clear
 CMD php artisan storage:link && \
     php artisan config:clear && \
     php artisan cache:clear && \ php artisan migrate --force && apache2-foreground
