@@ -38,6 +38,13 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/appointments', [AdminController::class, 'viewAppointments'])->name('appointments');
     Route::PUT('/appointment/{id}/update', [AdminController::class, 'updateAppointment'])->name('appointmentUpdate');
     Route::get('/main_panel', [AdminController::class, 'showPanel'])->name('show_panel');
+    //
+    // Route::GET('/blogs', [BlogController::class, 'index'])->name('blogs.index');
+    // Route::POST('/blogs', [BlogController::class, 'store'])->name('blogs.store');
+    // Route::GET('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+    // Route::GET('/blogs/{blog}/edit', [BlogController::class, 'edit'])->name('blogs.edit');
+    // Route::PUT('/blogs/{blog}', [BlogController::class, 'update'])->name('blogs.update');
+    // Route::DELETE('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blogs.destroy');
 });
 
 Route::resource('blogs', BlogController::class)->middleware('admin', 'auth');
