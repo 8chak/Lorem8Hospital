@@ -36,6 +36,10 @@ RUN mkdir -p /var/www/html/public/images \
 && chown -R www-data:www-data /var/www/html/public/images \
 && chmod -R 775 /var/www/html/public/images
 
+RUN mkdir -p /var/www/html/storage/app/public/posts \
+    && chown -R www-data:www-data /var/www/html/storage/app/public/posts \
+    && chmod -R 775 /var/www/html/storage/app/public/posts
+
 # Expose port 80
 EXPOSE 80
 
