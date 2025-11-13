@@ -32,6 +32,9 @@ RUN mkdir -p database && touch database/database.sqlite \
     && chown -R www-data:www-data database \
     && chmod -R 775 database
 
+RUN mkdir -p /var/www/html/public/images \
+&& chown -R www-data:www-data /var/www/html/public/images \
+&& chmod -R 775 /var/www/html/public/images
 
 # Expose port 80
 EXPOSE 80
