@@ -25,6 +25,9 @@ RUN composer install --no-dev --optimize-autoloader
 # Set permissions for Laravel storage
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
+# Build frontend assets
+RUN npm ci && npm run build
+
 # Make database folder and file
 RUN mkdir -p database && touch database/database.sqlite \
     && chown -R www-data:www-data database \
@@ -38,5 +41,7 @@ EXPOSE 80
 RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
 # Start Apache server
-CMD php artisan migrate --force && apache2-foreground
+CMD php artisan storage:link && \
+    php artisan config:clear && \
+    php artisan cache:clear && \ php artisan migrate --force && apache2-foreground
 
