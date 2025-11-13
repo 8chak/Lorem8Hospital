@@ -45,5 +45,5 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 
 # Start Apache server
 #Storage link no commit::congig clear && cache clear
-CMD php artisan storage:link && \ php artisan migrate --force && apache2-foreground
+CMD php artisan migrate --force && apache2-foreground
 
