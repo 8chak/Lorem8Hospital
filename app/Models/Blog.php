@@ -15,7 +15,7 @@ class Blog extends Model
 
     public function getImageUrlAttribute()
     {
-        return $this->image ? asset('storage/' . $this->image) : asset('images/default-post.jpg');
+        return $this->image ? asset('images/' . $this->image) : asset('images/default-post.jpg');
     }
 
     public function getTagsArrayAttribute()
